@@ -2,7 +2,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-// create a schema
+// Define the schema
 var instrumentSchema = new Schema({
   
   instrumentid: { type: String },
