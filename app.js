@@ -5,7 +5,7 @@ var app = new express();
 var Instrument = require('./app/models/instrument');
 var morgan = require('morgan');
 var ejs = require('ejs');
-
+//connect to the mongodb
 mongoose.connect('mongodb://prasadk:raktheshwari@ds111589.mlab.com:11589/distro', function(err) {
 	if(err) throw err;
 });
