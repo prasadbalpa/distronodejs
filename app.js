@@ -10,7 +10,7 @@ mongoose.connect('mongodb://prasadk:raktheshwari@ds111589.mlab.com:11589/distro'
 	if(err) throw err;
 });
 //port at which the server will be running
-var port = 28090;
+var port = process.env.PORT || 28090;
 //using the middleware to get the stats on the console.
 app.use(morgan('dev'));
 app.use(bodyparser.json()); // support json encoded bodies
