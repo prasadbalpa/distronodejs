@@ -18,7 +18,7 @@ app.use(bodyparser.urlencoded({ extended: false })); // support encoded bodies
 
 app.get('/', function(req, res){
 	console.log('hitting root api');
-	var kam = 'enu samachara illa';
+	var kam = 'This is a placeholder for the message';
 	res.render('index', {myvalue: kam});
 });
 //Create a new instrument in the mongoDB...
