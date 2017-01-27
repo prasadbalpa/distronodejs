@@ -5,9 +5,9 @@ var Schema = mongoose.Schema;
 // Define the schema
 var instrumentSchema = new Schema({
   
-  instrumentid: { type: String },
-  customerid: { type: String},
-  //depositdate: {type: Date, default: Date.now},
+  instrumentid: { type: String, required:true },
+  customerid: { type: String, required: true},
+  depositdate: {type: Date, default: Date.now, required: true},
   status: {type: Boolean, default: false}
  
 });
