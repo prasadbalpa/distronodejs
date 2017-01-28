@@ -14,6 +14,7 @@
     "express": "^4.14.0",
     "mongoose": "latest",
     "morgan": "^1.7.0",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "pem": "latest"
   }
 }
