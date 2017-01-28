@@ -42,6 +42,7 @@ var server = http.createServer(function(request, response) {
 		  //add other headers here...
 		});
 		response.end();
+		
 });
 server.listen(80);
 console.log('Server running...' + port);
