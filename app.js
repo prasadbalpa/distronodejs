@@ -37,7 +37,7 @@ pem.createCertificate({days:1, selfSigned:true}, function(err, keys){
 });
 
 httpapp.get("/", function(req, res) {
-	res.redirect("https://" + request.headers.host + ":" + port + request.url);
+	res.redirect("https://" + req.headers.host + ":" + port + req.url);
 });
 httpapp.listen(80);
 //var server = http.createServer(function(request, response) {
