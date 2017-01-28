@@ -5,6 +5,9 @@ var app = new express();
 var Instrument = require('./app/models/instrument');
 var morgan = require('morgan');
 var ejs = require('ejs');
+var https = require('https');
+var pem = require('pem');
+
 //connect to the mongodb and throw an error if it fails
 mongoose.connect('mongodb://prasadk:raktheshwari@ds111589.mlab.com:11589/distro', function(err) {
 	if(err) throw err;
@@ -16,11 +19,19 @@ app.use(morgan('dev'));
 app.use(bodyparser.json()); // support json encoded bodies
 app.use(bodyparser.urlencoded({ extended: false })); // support encoded bodies
 
-require('./routes/router.js')(app);
+//require('./routes/router.js')(app);
 
 app.set('views', './views');
 app.set('view engine', 'ejs');
-
-app.listen(port);
+pem.createCertificate({days:1, selfSigned:true}, function(err, keys){
+	  //var app = express();
+	 
+	  app.get('/',  requireAuth, function(req, res){
+	    res.send('o hai!');
+	  });
+	 
+	  https.createServer({key: keys.serviceKey, cert: keys.certificate}, app).listen(443);
+});
+//app.listen(port);
 
 console.log('Server running...' + port);
