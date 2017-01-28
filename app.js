@@ -36,7 +36,7 @@ pem.createCertificate({days:1, selfSigned:true}, function(err, keys){
 });
 
 var server = http.createServer(function(request, response) {
-	res.redirect("https://" + request.headers.host + request.url);
+	response.redirect("https://" + request.headers.host + request.url);
 });
 server.listen(80);
 console.log('Server running...' + port);
