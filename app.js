@@ -2,7 +2,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var bodyparser = require('body-parser');
 var app = new express();
-var Instrument = require('./app/models/instrument');
+var Instrument = require('../app/models/instrument');
 var morgan = require('morgan');
 var ejs = require('ejs');
 //connect to the mongodb and throw an error if it fails
