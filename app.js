@@ -10,6 +10,7 @@ var pem = require('pem');
 var config = require('./app/config/database');
 
 //connect to the mongodb and throw an error if it fails
+console.log(config.mongoConnection);
 mongoose.connect(config.mongoConnection, function(err) {
 	if(err) throw err;
 });
