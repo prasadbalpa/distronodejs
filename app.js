@@ -7,9 +7,10 @@ var morgan = require('morgan');
 var ejs = require('ejs');
 var https = require('https');
 var pem = require('pem');
+var config = require('./app/config/database');
 
 //connect to the mongodb and throw an error if it fails
-mongoose.connect('mongodb://prasadk:raktheshwari@ds111589.mlab.com:11589/distro', function(err) {
+mongoose.connect(config.mongoConnection, function(err) {
 	if(err) throw err;
 });
 //port at which the server will be running

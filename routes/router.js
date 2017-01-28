@@ -3,13 +3,17 @@
  */
 var Instrument = require('../app/models/instrument');
 var User = require('../app/models/customer');
+var tokens = required('../app/models/tokenmgmt');
+
 module.exports = function(app) {
+	/*root URL*/
 	app.get('/', function(req, res){
 		console.log('hitting root api');
 		var kam = 'This is a placeholder for the message';
 		res.render('index', {myvalue: kam});
 	});
-	//Create a new instrument in the mongoDB...
+    //****************************Manage instrument APIs**************************/
+	
 	app.post('/instrument', function(req, res) {
 		
 		var newInstrument = new Instrument();
@@ -51,7 +55,6 @@ module.exports = function(app) {
 	});
 
 	app.get('/instrument/:id', function(req, res) {
-		//res.send('You are asking me for the read');
 		Instrument.find({'_id': req.params.id}, function(err, response) {
 		    if(err) throw err;
 		    console.log(JSON.stringify(response), null, 2);
@@ -89,20 +92,12 @@ module.exports = function(app) {
 		});
 	});
 
-	app.get('/instrument/:instrumentno/:customerid', function(req, res) {
-		console.log('hitting instrument api');
+	app.get('/instrument/:customerid', function(req, res) {
+		console.log('get all instruments for a customer');
 	
 	});
 
-	app.get('/instrument/users', function(req, res) {
-		var chris = new User();
-		
-		User.find({}, function(err, db_users) { 
-		    if(err) throw err;
-		    res.send(db_users);
-		});
-		
-	});
-
+	
+	//****************************Manage instrument APIs**************************/
 	
 }
