@@ -14,6 +14,7 @@ module.exports = function(app) {
 	});
 	app.get('/login', function(req, res){
 		console.log('hitting root api');
+		//Check if this user(identified by the token) is already logged in using the tokenmgmt
 		var kam = 'This is a placeholder for the message';
 		res.render('index', {myvalue: kam});
 	});
