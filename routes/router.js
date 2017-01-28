@@ -2,6 +2,7 @@
  * 
  */
 var Instrument = require('../app/models/instrument');
+var User = require('../app/models/customer');
 module.exports = function(app) {
 	app.get('/', function(req, res){
 		console.log('hitting root api');

@@ -13,7 +13,7 @@ mongoose.connect('mongodb://prasadk:raktheshwari@ds111589.mlab.com:11589/distro'
 	if(err) throw err;
 });
 //port at which the server will be running
-var port = process.env.PORT || 28090;
+var port = process.env.PORT || 443;
 //using the middleware to get the stats on the console.
 app.use(morgan('dev'));
 app.use(bodyparser.json()); // support json encoded bodies
@@ -24,17 +24,12 @@ require('./routes/router.js')(app);
 app.set('views', './views');
 app.set('view engine', 'ejs');
 pem.createCertificate({days:1, selfSigned:true}, function(err, keys){
-	  //var app = express();
 	  if(err) {
-		  console.log("error in creating the key");
+		  console.log("error in creating the key, shutting down the server");
 		  throw err;
 	  }
-	  //app.get('/', function(req, res){
-	    //res.send('o hai!');
-	  //});
 	 
-	  https.createServer({key: keys.serviceKey, cert: keys.certificate}, app).listen(443);
+	  https.createServer({key: keys.serviceKey, cert: keys.certificate}, app).listen(port);
 });
-//app.listen(port);
 
-//console.log('Server running...' + port);
+console.log('Server running...' + port);
