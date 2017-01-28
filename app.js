@@ -37,8 +37,10 @@ pem.createCertificate({days:1, selfSigned:true}, function(err, keys){
 
 var server = http.createServer(function(request, response) {
 	//response.redirect("https://" + request.headers.host + request.url);
+	console.log("https://" + request.headers.host + request.url + port);
 	response.writeHead(302, {
-		  'Location': request.headers.host + request.url
+		  'Location': "https://" + request.headers.host + request.url + port
+	     
 		  //add other headers here...
 		});
 		response.end();
