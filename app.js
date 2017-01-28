@@ -25,7 +25,10 @@ app.set('views', './views');
 app.set('view engine', 'ejs');
 pem.createCertificate({days:1, selfSigned:true}, function(err, keys){
 	  //var app = express();
-	 
+	  if(err) {
+		  console.log("error in creating the key");
+		  throw err;
+	  }
 	  app.get('/', function(req, res){
 	    res.send('o hai!');
 	  });
@@ -34,4 +37,4 @@ pem.createCertificate({days:1, selfSigned:true}, function(err, keys){
 });
 //app.listen(port);
 
-console.log('Server running...' + port);
+//console.log('Server running...' + port);
