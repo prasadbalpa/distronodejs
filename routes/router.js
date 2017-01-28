@@ -3,7 +3,7 @@
  */
 var Instrument = require('../app/models/instrument');
 var User = require('../app/models/customer');
-var tokens = required('../app/models/tokenmgmt');
+var tokens = require('../app/models/tokenmgmt');
 
 module.exports = function(app) {
 	/*root URL*/
