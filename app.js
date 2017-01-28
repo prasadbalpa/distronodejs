@@ -26,7 +26,7 @@ app.set('view engine', 'ejs');
 pem.createCertificate({days:1, selfSigned:true}, function(err, keys){
 	  //var app = express();
 	 
-	  app.get('/',  requireAuth, function(req, res){
+	  app.get('/', function(req, res){
 	    res.send('o hai!');
 	  });
 	 
