@@ -12,6 +12,12 @@ module.exports = function(app) {
 		var kam = 'This is a placeholder for the message';
 		res.render('index', {myvalue: kam});
 	});
+	app.get('/login', function(req, res){
+		console.log('hitting root api');
+		var kam = 'This is a placeholder for the message';
+		res.render('index', {myvalue: kam});
+	});
+	
     //****************************Manage instrument APIs**************************/
 	
 	app.post('/instrument', function(req, res) {
