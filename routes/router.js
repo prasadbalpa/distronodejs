@@ -1,7 +1,7 @@
 /**
  * 
  */
-var Instrument = require('./app/models/instrument');
+var Instrument = require('../app/models/instrument');
 module.exports = function(app) {
 	app.get('/', function(req, res){
 		console.log('hitting root api');
