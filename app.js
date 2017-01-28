@@ -39,7 +39,7 @@ var server = http.createServer(function(request, response) {
 	//response.redirect("https://" + request.headers.host + request.url);
 	console.log("https://" + request.headers.host + request.url + port);
 	response.writeHead(302, {
-		  'Location': "https://" + request.headers.host + request.url + port
+		  'Location': "https://" + request.headers.host + ":" + port + request.url
 	     
 		  //add other headers here...
 		});
