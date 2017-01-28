@@ -1,5 +1,5 @@
 /**
- * 
+ * Adding all of the mongooes related information.
  */
 var mongoose = require('mongoose');
 var config = require('../app/config/database');
