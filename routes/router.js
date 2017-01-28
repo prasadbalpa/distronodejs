@@ -8,7 +8,7 @@ var tokens = require('../app/models/tokenmgmt');
 module.exports = function(app) {
 	/*root URL*/
 	app.get('/', function(req, res){
-		console.log('hitting root api');
+		console.log('hitting root api'); //console logging
 		var kam = 'This is a placeholder for the message';
 		res.render('index', {myvalue: kam});
 	});
