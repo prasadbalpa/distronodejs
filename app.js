@@ -19,7 +19,7 @@ app.use(morgan('dev'));
 app.use(bodyparser.json()); // support json encoded bodies
 app.use(bodyparser.urlencoded({ extended: false })); // support encoded bodies
 
-//require('./routes/router.js')(app);
+require('./routes/router.js')(app);
 
 app.set('views', './views');
 app.set('view engine', 'ejs');
@@ -29,9 +29,9 @@ pem.createCertificate({days:1, selfSigned:true}, function(err, keys){
 		  console.log("error in creating the key");
 		  throw err;
 	  }
-	  app.get('/', function(req, res){
-	    res.send('o hai!');
-	  });
+	  //app.get('/', function(req, res){
+	    //res.send('o hai!');
+	  //});
 	 
 	  https.createServer({key: keys.serviceKey, cert: keys.certificate}, app).listen(443);
 });
