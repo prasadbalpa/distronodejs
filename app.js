@@ -38,7 +38,8 @@ pem.createCertificate({days:1, selfSigned:true}, function(err, keys){
 
 //Use this for the purpose of redirecting the client requests that are http in nature.
 httpapp.get("/", function(req, res) {
-	res.redirect("https://" + req.headers.host + ":" + port + req.url);
+	//res.redirect("https://" + req.headers.host + ":" + port + req.url);
+	res.send("I am just a http server....");
 });
 httpapp.listen(80);
 
