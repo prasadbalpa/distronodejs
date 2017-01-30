@@ -12,7 +12,10 @@ try {
 	});
 } catch (err ){
 	console.log("Error occured in the connection....handling in the catch")
+	
 }
+
+
 
 
 module.exports = mongooseconn;
