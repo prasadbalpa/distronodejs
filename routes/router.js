@@ -14,7 +14,7 @@ module.exports = function(app) {
 	});
 	app.get('/login', function(req, res){
 		console.log(req.headers.authorization);
-		if(req.headers.authorization == '1234567890') {
+		if(req.headers.authorization == 'Bearer 1234567890') {
 			//matched a user TODO:real user check, user is already checked in.
 			res.send("{ok}");
 		} else if(req.headers.authorization == undefined) {
@@ -23,10 +23,10 @@ module.exports = function(app) {
 		//check if authorization is not nill, if the user is already logged in, if yes, redirect to basic info.
 		//if not a logged in user, then send a otp via tropo.  
 		//if user returns with an otp in the post body, then, validate otp and redirect to basic info.
-		console.log('hitting root api');
+		////console.log('hitting root api');
 		//Check if this user(identified by the token) is already logged in using the tokenmgmt, need to verify the login state
-		var kam = 'This is a placeholder for the message';
-		res.render('index', {myvalue: kam});
+		//var kam = 'This is a placeholder for the message';
+		//res.render('index', {myvalue: kam});
 	});
 	
     //****************************Manage instrument APIs**************************/
