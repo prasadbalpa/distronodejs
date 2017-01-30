@@ -13,6 +13,10 @@ module.exports = function(app) {
 		res.render('index', {myvalue: kam});
 	});
 	app.get('/login', function(req, res){
+		console.log(res.headers.authorization);
+		//check if authorization is not nill, if the user is already logged in, if yes, redirect to basic info.
+		//if not a logged in user, then send a otp via tropo.  
+		//if user returns with an otp in the post body, then, validate otp and redirect to basic info.
 		console.log('hitting root api');
 		//Check if this user(identified by the token) is already logged in using the tokenmgmt, need to verify the login state
 		var kam = 'This is a placeholder for the message';
