@@ -20,7 +20,7 @@ module.exports = function(app) {
 	});
 	
     //****************************Manage instrument APIs**************************/
-	
+	//This is for a specific use case
 	app.post('/instrument', function(req, res) {
 		
 		var newInstrument = new Instrument();
