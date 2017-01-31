@@ -22,7 +22,7 @@ module.exports = function(app) {
 		} else if(req.headers.authorization == undefined) { //not logged in...provide a token
 			var token = randtoken.generate(16);
 			res.header(access_token, "'" + token + "'");
-			console.log(res.header)
+			console.log(res.header);
 			res.redirect("/")
 		} else {
 			res.send("{not ok}");
