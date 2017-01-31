@@ -24,7 +24,7 @@ module.exports = function(app) {
 				
 			});
 			console.log("user id: " + req.headers.userid)
-			res.send("{ok}");
+			//res.send("{ok}");
 		} else if(req.headers.authorization == undefined) { //not logged in...provide a token
 			var newUser = new User();
 			var obj = JSON.parse(JSON.stringify(req.body), null, 2);
