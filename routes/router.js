@@ -124,7 +124,7 @@ module.exports = function(app) {
 			User.find({userid:req.params.id, access_token:req.headers.authorization}, function(error, response) {
 				if(error) {
 					throw error;
-				} else if(response != null){
+				} else if(response != ""){
 					console.log(response);
 				    console.log('{Found user with this bearer token}');
 				    Instrument.find({'_id': req.params.id}, function(err, response) {
