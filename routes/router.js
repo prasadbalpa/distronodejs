@@ -114,7 +114,7 @@ module.exports = function(app) {
 	    res.end(JSON.stringify(req.body, null, 2));
 	});
 
-	app.get('/instrument/:id', function(req, res) {
+	app.get('/instrument/:id/:instid', function(req, res) {
 		
 		if(req.headers.authorization == undefined) {
 			res.redirect("{not ok}");
@@ -127,7 +127,7 @@ module.exports = function(app) {
 				} else if(response != ""){
 					console.log(response);
 				    console.log('{Found user with this bearer token}');
-				    Instrument.find({'_id': req.params.id}, function(err, response) {
+				    Instrument.find({'_id': req.params.instid}, function(err, response) {
 				        if(err) throw err;
 				        console.log(JSON.stringify(response), null, 2);
 				        res.json(response);
