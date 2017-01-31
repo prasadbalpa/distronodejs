@@ -120,11 +120,12 @@ module.exports = function(app) {
 			res.redirect("{not ok}");
 		} else {
 			//var obj = JSON.parse(JSON.stringify(req.body), null, 2);
+			console.log(req.params.id + "::" + req.headers.authorization)
 			User.find({userid:req.params.id, access_token:req.headers.authorization}, function(error, response) {
 				if(error) {
 					throw error;
 				} else {
-					console.log(response);
+					
 				    console.log('{Found user with this bearer token}');
 				    Instrument.find({'_id': req.params.id}, function(err, response) {
 				        if(err) throw err;
