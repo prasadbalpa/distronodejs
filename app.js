@@ -11,6 +11,9 @@ var pem = require('pem');
 var config = require('./app/config/database');
 var http = require('http');
 var mongooseconn = require('./routes/mongooseconn');
+var fs = require('fs');
+
+
 //connect to the mongodb and throw an error if it fails
 //console.log(config.mongoConnection);
 //mongoose.connect(config.mongoConnection, function(err) {
@@ -27,14 +30,20 @@ require('./routes/router.js')(httpsapp);
 
 httpsapp.set('views', './views');
 httpsapp.set('view engine', 'ejs');
-pem.createCertificate({days:1, selfSigned:true}, function(err, keys){
-	  if(err) {
-		  console.log("error in creating the key, shutting down the server");
-		  throw err;
-	  }
+
+var privateKey  = fs.readFileSync('sslcert/domain.key', 'utf8');
+var certificate = fs.readFileSync('sslcert/domain.crt', 'utf8');
+var credentials = {key: privateKey, cert: certificate};
+var httpsServer = https.createServer(credentials, httpsapp);
+httpsServer.listen(8443);
+//pem.createCertificate({days:1, selfSigned:true}, function(err, keys){
+//	  if(err) {
+////		  console.log("error in creating the key, shutting down the server");
+//		  throw err;
+//	  }
 	 
-	  https.createServer({key: keys.serviceKey, cert: keys.certificate}, httpsapp).listen(port);
-});
+//	  https.createServer({key: keys.serviceKey, cert: keys.certificate}, httpsapp).listen(port);
+//});
 
 //Use this for the purpose of redirecting the client requests that are http in nature.
 httpapp.get("/", function(req, res) {
