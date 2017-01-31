@@ -18,7 +18,7 @@ module.exports = function(app) {
 			//matched a user TODO:real user check, user is already checked in.
 			res.send("{ok}");
 		} else if(req.headers.authorization == undefined) {
-			res.send("{not ok");
+			res.send("{not ok}");
 		}
 		//check if authorization is not nill, if the user is already logged in, if yes, redirect to basic info.
 		//if not a logged in user, then send a otp via tropo.  
