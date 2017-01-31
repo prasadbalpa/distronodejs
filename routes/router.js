@@ -14,16 +14,22 @@ module.exports = function(app) {
 		res.render('index', {myvalue: kam});
 	});
 	app.post('/login', function(req, res){
-		console.log(req.headers.authorization);
+		//console.log(req.headers.authorization);
 		if(req.headers.authorization == 'Bearer y4XyGrWKNZ2cSVPW') {
 			//matched a user TODO:real user check, user is already checked in.
+			var obj = JSON.parse(JSON.stringify(req.body), null, 2);
+			User.find({userid:obj.mobile, access_token:obj.access_token}, function(error, response) {
+				if(error) throw error;
+				res.send('{Found user with this bearer token}');
+				
+			});
 			console.log("user id: " + req.headers.userid)
 			res.send("{ok}");
 		} else if(req.headers.authorization == undefined) { //not logged in...provide a token
 			var newUser = new User();
 			var obj = JSON.parse(JSON.stringify(req.body), null, 2);
 			
-			console.log(obj);
+			console.log(obj.mobile);
 			
 			if (obj == null) throw err;
 			
@@ -33,7 +39,10 @@ module.exports = function(app) {
 			var token = randtoken.generate(16);
 			res.set('access_token', "'" + token + "'");
 			newUser.access_token = token;
-			newUser.type = 'user';
+			newUser.role = 'user';
+			console.log("User:" + newUser.mobile);
+			console.log("access_token:" + newUser.access_token);
+			console.log("type:" + newUser.role);
 			newUser.save(function(err) {
 				if(err) throw err;
 				console.log("Trying to read all of the instruments now and dump it back");
