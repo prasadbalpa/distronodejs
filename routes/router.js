@@ -13,7 +13,7 @@ module.exports = function(app) {
 		var kam = 'This is a placeholder for the message';
 		res.render('index', {myvalue: kam});
 	});
-	app.get('/login', function(req, res){
+	app.post('/login', function(req, res){
 		console.log(req.headers.authorization);
 		if(req.headers.authorization == 'Bearer y4XyGrWKNZ2cSVPW') {
 			//matched a user TODO:real user check, user is already checked in.
