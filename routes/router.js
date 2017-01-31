@@ -4,6 +4,7 @@
 var Instrument = require('../app/models/instrument');
 var User = require('../app/models/customer');
 var tokens = require('../app/models/tokenmgmt');
+var randtoken = require('rand-token');
 
 module.exports = function(app) {
 	/*root URL*/
@@ -17,8 +18,9 @@ module.exports = function(app) {
 		if(req.headers.authorization == 'Bearer 1234567890') {
 			//matched a user TODO:real user check, user is already checked in.
 			res.send("{ok}");
-		} else if(req.headers.authorization == undefined) {
-			res.send("{not ok}");
+		} else if(req.headers.authorization == undefined) { //not logged in...provide a token
+			var token = randtoken.generate(16);
+			res.send("{access_token='" + token + "'}")
 		} else {
 			res.send("{not ok}");
 		}

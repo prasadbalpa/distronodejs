@@ -7,7 +7,6 @@ var Schema = mongoose.Schema;
 
 // Define the schema
 var tokenSchema = new Schema({
-  
   userid: { type: String, require: true},
   tokenid: { type: String, required: true},
   expired: {type: Boolean, default: false, required: true}
