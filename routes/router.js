@@ -29,12 +29,13 @@ module.exports = function(app) {
 			var newUser = new User();
 			var obj = JSON.parse(JSON.stringify(req.body), null, 2);
 			
-			console.log(obj.mobile);
+			
+			console.log(obj.userid);
 			
 			if (obj == null) throw err;
 			
-			console.log(obj.mobile);
-			newUser.mobile = obj.mobile;
+			console.log(obj.userid);
+			newUser.mobile = obj.userid;
 			
 			var token = randtoken.generate(16);
 			res.set('access_token', "'" + token + "'");
