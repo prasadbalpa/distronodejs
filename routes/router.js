@@ -15,7 +15,7 @@ module.exports = function(app) {
 	});
 	app.post('/login', function(req, res){
 		//console.log(req.headers.authorization);
-		if(req.headers.authorization == 'Bearer y4XyGrWKNZ2cSVPW') {
+		if(req.headers.authorization != undefined) {
 			//matched a user TODO:real user check, user is already checked in.
 			var obj = JSON.parse(JSON.stringify(req.body), null, 2);
 			User.find({userid:obj.mobile, access_token:obj.access_token}, function(error, response) {
