@@ -126,7 +126,7 @@ module.exports = function(app) {
 					throw error;
 				} else if(response != ""){
 					console.log(response);
-				    console.log('{Found user with this bearer token}');
+				    console.log('{Found user with this bearer token}' + req.params.instid);
 				    Instrument.find({'_id': req.params.instid}, function(err, response) {
 				        if(err) throw err;
 				        console.log(JSON.stringify(response), null, 2);
