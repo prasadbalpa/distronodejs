@@ -20,10 +20,31 @@ module.exports = function(app) {
 			console.log("user id: " + req.headers.userid)
 			res.send("{ok}");
 		} else if(req.headers.authorization == undefined) { //not logged in...provide a token
+			var newUser = new User();
+			var obj = JSON.parse(JSON.stringify(req.body), null, 2);
+			
+			console.log(obj);
+			
+			if (obj == null) throw err;
+			
+			console.log(obj.mobile);
+			newUser.mobile = obj.mobile;
+			
 			var token = randtoken.generate(16);
 			res.set('access_token', "'" + token + "'");
-		
-			res.redirect("/")
+			newUser.access_token = token;
+			newUser.type = 'user';
+			newUser.save(function(err) {
+				if(err) throw err;
+				console.log("Trying to read all of the instruments now and dump it back");
+			    if(err) {
+			    	 throw err;
+			    	 res.send("{not ok}");
+			    }
+				//console.log(JSON.stringify(response), null, 2);
+			    res.send("{access_token:" + token);
+			  });
+			
 		} else {
 			res.send("{not ok}");
 		}

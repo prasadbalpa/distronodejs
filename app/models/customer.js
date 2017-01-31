@@ -6,14 +6,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 // Define the schema
-var userSchema = new Schema({
-  
-  name: { type: String, required:true },
+var userSchema = new Schema({  
   mobile: { type: String, required: true},
-  email: {type: String, default: Date.now},
-  address: {type: String},
-  role: {type: String, enum: ['admin', 'user']}
-  
+  access_token: {type:String},
+  role: {type: String, enum: ['admin', 'user']}  
 });
 
 
