@@ -45,26 +45,27 @@ module.exports = function(app) {
 		
 		console.log(obj.instrumentid);
 		
-		
+		newInstrument.userid = obj.userid;
 		newInstrument.instrumentid = obj.instrumentid;
 		newInstrument.customerid = obj.customerid;
 		newInstrument.status = false;
 
 		
-
-		newInstrument.save(function(err) {
+        try {
+		  newInstrument.save(function(err) {
 			if(err) throw err;
 			console.log("Trying to read all of the instruments now and dump it back");
-			Instrument.find({}, function(err, response) {
-		    if(err) throw err;
-			console.log(JSON.stringify(response), null, 2);
-			res.json(response);
-		});
+			//Instrument.find({userid: obj.userid}, function(err, response) {
+		    if(err) {
+		    	 throw err;
+		    }
+			//console.log(JSON.stringify(response), null, 2);
+			res.json("{ok}");
+		  });
+        } catch(err) {
+        	res.json("{not ok}")
+        }
 			
-
-		});
-		
-
 	});
 
 	app.put('/instrument', function(req, res) {
