@@ -124,7 +124,7 @@ module.exports = function(app) {
 			User.find({userid:req.params.id, access_token:req.headers.authorization}, function(error, response) {
 				if(error) {
 					throw error;
-				} else {
+				} else if(response != null){
 					
 				    console.log('{Found user with this bearer token}');
 				    Instrument.find({'_id': req.params.id}, function(err, response) {
@@ -132,6 +132,8 @@ module.exports = function(app) {
 				        console.log(JSON.stringify(response), null, 2);
 				        res.json(response);
 				    });
+				} else {
+					res.json("{value:notok}");
 				}
 			});
 		}
