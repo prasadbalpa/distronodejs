@@ -122,6 +122,7 @@ module.exports = function(app) {
 			//var obj = JSON.parse(JSON.stringify(req.body), null, 2);
 			console.log(req.params.id + "::" + req.headers.authorization)
 			User.find({userid:req.params.id, access_token:req.headers.authorization}, function(error, response) {
+				console.log(response);
 				if(error) {
 					throw error;
 				} else if(response != ""){
