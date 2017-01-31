@@ -21,7 +21,9 @@ module.exports = function(app) {
 			res.send("{ok}");
 		} else if(req.headers.authorization == undefined) { //not logged in...provide a token
 			var token = randtoken.generate(16);
-			res.send("{access_token='" + token + "'}")
+			res.headers.access_token = "'" + token + "'"
+			console.log(res.headers.access_token)
+			res.redirect("/")
 		} else {
 			res.send("{not ok}");
 		}
