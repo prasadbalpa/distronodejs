@@ -8,6 +8,10 @@ var randtoken = require('rand-token');
 
 module.exports = function(app) {
 	/*root URL*/
+	app.post('/otp', function(req, res) {
+		//This will be hit after you have sent me the mobile number
+		//We will implement that later....for now, it is not secure.....
+	});
 	app.get('/', function(req, res){
 		console.log('hitting root api'); //console logging
 		var kam = 'This is a placeholder for the message';
@@ -111,11 +115,25 @@ module.exports = function(app) {
 	});
 
 	app.get('/instrument/:id', function(req, res) {
-		Instrument.find({'_id': req.params.id}, function(err, response) {
-		    if(err) throw err;
-		    console.log(JSON.stringify(response), null, 2);
-		    res.json(response);
-		});
+		
+		if(req.headers.authorization == undefined) {
+			res.redirect("{not ok}");
+		} else {
+			//var obj = JSON.parse(JSON.stringify(req.body), null, 2);
+			User.find({userid:req.params.id, access_token:req.headers.authorization}, function(error, response) {
+				if(error) {
+					throw error;
+				} else {
+				    res.send('{Found user with this bearer token}');
+				    Instrument.find({'_id': req.params.id}, function(err, response) {
+				        if(err) throw err;
+				        console.log(JSON.stringify(response), null, 2);
+				        res.json(response);
+				    });
+				}
+			});
+		}
+		
 	});
 
 
