@@ -17,6 +17,7 @@ module.exports = function(app) {
 		console.log(req.headers.authorization);
 		if(req.headers.authorization == 'Bearer y4XyGrWKNZ2cSVPW') {
 			//matched a user TODO:real user check, user is already checked in.
+			console.log("user id: " + req.headers.userid)
 			res.send("{ok}");
 		} else if(req.headers.authorization == undefined) { //not logged in...provide a token
 			var token = randtoken.generate(16);
