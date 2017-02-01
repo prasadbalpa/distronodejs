@@ -11,12 +11,12 @@ module.exports = function(app) {
 	/*root URL*/
 	app.get('/testtwilio', function(req, res){
 		//generate the OTP.
-		var otp = Math.floor(100000 + Math.random() * 900000);
+		//var otp = Math.floor(100000 + Math.random() * 900000);
 		
 		twilio.sendMessage({
 			to: '+919902016406', 
 			from: '+17172684939',
-			body: otp
+			body: 'I am Prasad Kamath'
 			
 			
 		}, function(err, data){
