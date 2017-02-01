@@ -5,9 +5,22 @@ var Instrument = require('../app/models/instrument');
 var User = require('../app/models/customer');
 var tokens = require('../app/models/tokenmgmt');
 var randtoken = require('rand-token');
+var twilio = require('twilio')('AC2e0023e5a30696ec722794e36bd40223', '2407a1cfea45ff3fd05c4204776db720');
 
 module.exports = function(app) {
 	/*root URL*/
+	app.get('/testtwilio', function(err, data){
+		twilio.sendMessage({
+			to: '+919902016406', 
+			from: '',
+			body: 'hi, how are you ?'
+		}, function(err, data){
+			if(err) 
+				console.log("error");
+			console.log(data);
+			res.send('namaskaara');
+		});
+	});
 	app.post('/otp', function(req, res) {
 		//This will be hit after you have sent me the mobile number
 		//We will implement that later....for now, it is not secure.....
