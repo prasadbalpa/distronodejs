@@ -5,34 +5,64 @@ var Instrument = require('../app/models/instrument');
 var User = require('../app/models/customer');
 var tokens = require('../app/models/tokenmgmt');
 var randtoken = require('rand-token');
-var twilio = require('twilio')('AC2e0023e5a30696ec722794e36bd40223', '2407a1cfea45ff3fd05c4204776db720');
+var twilio = require('../routes/twiliohandler.js');
+var tests = require('./test.js');
 
 module.exports = function(app) {
 	/*root URL*/
-	app.get('/testtwilio', function(req, res){
-		//generate the OTP.
-		//var otp = Math.floor(100000 + Math.random() * 900000);
+	app.get('/testusers', function(req, res){
+		var user = new User();
+		User.find({}, function(err, resp) {
+			if(err) throw err;
+			console.log(resp);
+			res.send(resp);
+		});
+		//user.mobile='349348341223';
+		//user.instruments.push("first one");
+		//user.instruments.push("second one");
+		//user.role = 'admin';
+		//user.save(function(err) {
+			//if(err) throw err;
+			//console.log("Trying to read all of the instruments now and dump it back");
+		    //if(err) {
+		    	// throw err;
+		    	// res.send("{not ok}");
+		    //}
+			//console.log(JSON.stringify(response), null, 2);
+		    //res.send("done");
+		   // User.findByIdAndUpdate('58917ddd79a4cc071431aadc', 
+		    //				        {$push: {"instruments": "third one"}},
+		    	//			        {safe: true, upsert: true},
+		    		//		        function(err, model) {
+		    			//	          console.log(err);	
+		    				//        }
+		    				        //res.send("ok");
+	       // );
+		 // });
 		
-		twilio.sendMessage({
+	});
+	app.get('/testtwilio', function(req, res){
+		var otp = Math.floor(Math.random() * 9999);
+		twilio.sendmsg({
 			to: '+919902016406', 
 			from: '+17172684939',
-			body: 'I am Prasad Kamath'
-			
-			
-		}, function(err, data){
-			if(err) 
-				console.log("error");
-			console.log(data);
-			res.send('namaskaara');
-		});
+			body: otp.toString()
+			}, function(error, data) {
+			   res.send('{ok}');
+			});
+		
 	});
-	app.post('/otp', function(req, res) {
+	app.get('/otp', function(req, res) {
 		//This will be hit after you have sent me the mobile number
 		//We will implement that later....for now, it is not secure.....
+		console.log(Math.floor(Math.random() * 9999));
+		res.send("hi"); 
 	});
 	app.get('/', function(req, res){
 		console.log('hitting root api'); //console logging
 		var kam = 'This is a placeholder for the message';
+		tests.sendMessage("Bangalore is the country");
+		tests.receiveMessage("Mangalore is the country");
 		res.render('index', {myvalue: kam});
 	});
 	app.post('/login', function(req, res){
