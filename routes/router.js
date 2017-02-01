@@ -9,7 +9,7 @@ var twilio = require('twilio')('AC2e0023e5a30696ec722794e36bd40223', '2407a1cfea
 
 module.exports = function(app) {
 	/*root URL*/
-	app.get('/testtwilio', function(err, data){
+	app.get('/testtwilio', function(req, res){
 		twilio.sendMessage({
 			to: '+919902016406', 
 			from: '+17172684939',
