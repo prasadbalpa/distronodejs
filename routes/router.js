@@ -44,7 +44,7 @@ module.exports = function(app) {
 	app.get('/testtwilio', function(req, res){
 		var otp = Math.floor(Math.random() * 9999);
 		twilio.sendmsg({
-			to: '+919902016406', 
+			to: '+919945699733', 
 			from: '+17172684939',
 			body: otp.toString()
 			}, function(error, data) {
